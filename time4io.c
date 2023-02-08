@@ -4,6 +4,10 @@
 
 
 int getsw( void ){
+    return (LATD & 0x780) >> 8;
+}
 
-    return (LATD & 0x780) >> 7;
-    }
+int getbtns(void){
+
+    return (BTN & 0xe0) >> 5;
+}
