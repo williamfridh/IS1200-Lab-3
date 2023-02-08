@@ -43,15 +43,9 @@ void labwork( void )
   getbtns();                                                          // Get buttons
   int btn = getbtns();
   if(btn & 0x8){                                                      //Check if button is pressed, if yes get switch
-      mytime[3] = getsw();                                         
+      mytime | (getsw() < 12);                                   
   }
-  if(btn & 0x4){                                                      //Check if button is pressed, if yes get switch
-      mytime[2] = getsw();                                         
-  }
-
-  if(btn & 0x2){                                                      //Check if button is pressed, if yes get switch
-      mytime[1] = getsw();                                         
-  }
+ 
 
 
   delay( 1000 );
