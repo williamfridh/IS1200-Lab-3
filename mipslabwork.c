@@ -40,6 +40,20 @@ volatile int * porte = (volatile int *) 0xbf886110;                   // Suppose
 void labwork( void )
 {
   *porte = mytime;                                                    // Set let value to mytime.
+  getbtns();                                                          // Get buttons
+  int btn = getbtns();
+  if(btn & 0x8){                                                      //Check if button is pressed, if yes get switch
+      mytime[3] = getsw();                                         
+  }
+  if(btn & 0x4){                                                      //Check if button is pressed, if yes get switch
+      mytime[2] = getsw();                                         
+  }
+
+  if(btn & 0x2){                                                      //Check if button is pressed, if yes get switch
+      mytime[1] = getsw();                                         
+  }
+
+
   delay( 1000 );
   time2string( textstring, mytime );
   display_string( 3, textstring );
