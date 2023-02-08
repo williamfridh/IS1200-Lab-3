@@ -9,5 +9,5 @@ int getsw( void ){
 
 int getbtns(void){
 
-    return (BTN & 0xe0) >> 5;
+    return (LATD & 0xe0) >> 5;
 }
