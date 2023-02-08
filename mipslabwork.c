@@ -39,7 +39,7 @@ void labinit( void )
 volatile int * porte = (volatile int *) 0xbf886110;                   // Supposed to be inside labwork(), but unnecesarry
 void labwork( void )
 {
-  *porte = mytime;                                                    // Set let value to mytime
+  *porte = mytime;                                                    // Set let value to mytime.
   delay( 1000 );
   time2string( textstring, mytime );
   display_string( 3, textstring );
