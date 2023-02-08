@@ -14,7 +14,7 @@
 #include <pic32mx.h>  /* Declarations of system-specific addresses etc */
 #include "mipslab.h"  /* Declatations for these labs */
 
-int mytime = 0x1111;
+int mytime = 0x2222;
 
 char textstring[] = "text, more text, and even more text!";
 
