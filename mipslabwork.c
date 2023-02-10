@@ -44,7 +44,7 @@ void labwork( void )
   //mytime = getsw();
 
   if(btn & 0x8){                                                      //Check if button is pressed, if yes get switch
-      mytime = mytime | (getsw() << 12);                                   
+      mytime = (mytime & 0x0fff) | (getsw() << 12);                                   
   }
  
 
