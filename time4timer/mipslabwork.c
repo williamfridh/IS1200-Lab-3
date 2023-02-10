@@ -36,7 +36,7 @@ void labinit( void )
   T2CON = 0x0;                        //Stopping timer
   T2CONSET = 0x60;                    //Setting prescaler to 1/256
   TMR2 = 0x0;
-  PR2 = 31249;                        //Setting the period for the timer
+  PR2 = 65000;                        //Setting the period for the timer
   T2CONSET = 0x8000;                  //Starting timer
 
 
@@ -75,6 +75,7 @@ void labwork( void )
     display_string( 3, textstring );
     display_update(); 
     tick( &mytime );
+    IFSCLR(0) = 0x100;                                              //Clear flag
   }
 
   display_image(96, icon);
