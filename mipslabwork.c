@@ -28,9 +28,9 @@ void user_isr( void )
 void labinit( void )
 {
   volatile int * trise = (volatile int *) 0xbf886100;                 // Defined pointer to TRISE
-  *trise = *trise & 0xffffff00;                                       // Set ports 0-7 as outputs
+  *trise = *trise & 0xfffffff0;                                       // Set ports 0-7 as outputs
 
-  PORTD = PORTD & 0xfe0;                                              // Set ports 11 through 5 as inputs
+  TRISD = TRISD & 0xfe0;
 
   return;
 }
