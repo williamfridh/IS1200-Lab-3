@@ -10,13 +10,18 @@
   
  .data
  .text
- .global delay, time2string
+ .global delay, time2string, enable_interrupt
 
  # hexmain.asm
  # Written 2015-09-04 by F Lundevall
  # Copyright abandonded - this file is in the public domain.
 
+enable_interrupt:
+	ei
+	jr $ra
+	nop
 
+	
 hexasc:
 	andi	$v0, $a0, 0xf		#COPY LAST 4 LSB 
 	ble	$v0, 0x9, smallerNum	#If the value of $v0 is smaller than 9 we go to smallNum 
