@@ -39,10 +39,7 @@ void labinit( void )
 volatile int * porte = (volatile int *) 0xbf886110;                   // Supposed to be inside labwork(), but unnecesarry
 void labwork( void )
 {
-  int btn = getbtns();
-  if(btn & 0x8){                                                      //Check if button is pressed, if yes get switch
-      mytime = mytime | (getsw() << 12);                                   
-  }
+  
  
 
 
@@ -52,6 +49,6 @@ void labwork( void )
   display_update();
   tick( &mytime );
   display_image(96, icon);
-  *porte = mytime - 1;                                                    // Set let value to mytime.
+  *porte = mytime;                                                    // Set let value to mytime.
 
 }
