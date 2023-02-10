@@ -32,6 +32,15 @@ void labinit( void )
 
   TRISDSET = 0xfe0;
 
+  
+  T2CON = 0x0;                        //Stopping timer
+  TIMR2 = 0x0;
+  PR2 = 31250;                        //Setting the period for the timer
+  T2CONSET = 0x70;                    //Setting prescaler to 1/256
+  T2CONSET = 0x8000;                  //Starting timer
+
+  
+
   return;
 }
 
@@ -55,12 +64,22 @@ void labwork( void )
       mytime = (mytime & 0xff0f) | (getsw() << 4);                                   
   }
 
-  delay( 1000 );
-  time2string( textstring, mytime );
-  display_string( 3, textstring );
-  display_update(); 
-  tick( &mytime );
+
+
+
+
+  //delay( 1000 );
+
+  if(IFS(0) = 0x100){                                                //Detect and interrupt flag
+    time2string( textstring, mytime );
+    display_string( 3, textstring );
+    display_update(); 
+    tick( &mytime );
+    IFSCLR(0) = 0x100;                                              //Clear flag 
+  }
+
   display_image(96, icon);
   *porte = ledTime;                                                    // Set let value to mytime.
   ledTime++;
+
 }
