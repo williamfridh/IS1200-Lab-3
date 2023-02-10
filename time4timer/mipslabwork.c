@@ -74,7 +74,6 @@ void labwork( void )
     display_string( 3, textstring );
     display_update(); 
     tick( &mytime );
-    IFSCLR(0) = 0x100;                                              //Clear flag
   }
 
   display_image(96, icon);
