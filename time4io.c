@@ -4,10 +4,10 @@
 
 
 int getsw( void ){
-    return (PORTD & 0x780) >> 7;
+    return (PORTD & 0xf00) >> 8;
 }
 
 int getbtns(void){
 
-    return (PORTD & 0xe0) >> 5;
+    return (PORTD & 0xe0) >> 5; 
 }
