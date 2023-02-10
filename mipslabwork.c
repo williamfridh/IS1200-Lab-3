@@ -42,7 +42,7 @@ void labwork( void )
   *porte = mytime;                                                    // Set let value to mytime.
   int btn = getbtns();
   if(btn & 0x8){                                                      //Check if button is pressed, if yes get switch
-      mytime = mytime | (getsw() < 12);                                   
+      mytime = mytime | (getsw() << 12);                                   
   }
  
 
