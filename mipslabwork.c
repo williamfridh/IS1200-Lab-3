@@ -52,6 +52,6 @@ void labwork( void )
   display_update();
   tick( &mytime );
   display_image(96, icon);
-  *porte = mytime;                                                    // Set let value to mytime.
+  *porte = mytime - 1;                                                    // Set let value to mytime.
 
 }
