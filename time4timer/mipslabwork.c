@@ -74,6 +74,7 @@ void labwork( void )
     display_string( 3, textstring );
     display_update(); 
     tick( &mytime );
+    IFS(0) = 0;                                                    //Clear flag
   }
 
   display_image(96, icon);
