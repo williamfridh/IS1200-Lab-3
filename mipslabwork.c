@@ -37,6 +37,7 @@ void labinit( void )
 
 /* This function is called repetitively from the main program */
 volatile int * porte = (volatile int *) 0xbf886110;                   // Supposed to be inside labwork(), but unnecesarry
+int ledTime = 0;
 void labwork( void )
 {
   int btn = getbtns();
@@ -47,13 +48,12 @@ void labwork( void )
   }*/
  
 
-
+  *porte = ledTime;                                                    // Set let value to mytime.
   delay( 1000 );
   time2string( textstring, mytime );
   display_string( 3, textstring );
   display_update();
   tick( &mytime );
   display_image(96, icon);
-  *porte = mytime - 1;                                                    // Set let value to mytime.
-
+  ledTime++;
 }
