@@ -74,10 +74,9 @@ void labwork( void )
     display_update(); 
     tick( &mytime );
     IFS(0) = 0;                                                    //Clear flag
-  }
-
-  display_image(96, icon);
   *porte = ledTime;                                                    // Set let value to mytime.
   ledTime++;
+  }
+  display_image(96, icon);
 
 }
