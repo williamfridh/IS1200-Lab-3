@@ -78,9 +78,9 @@ void labwork( void )
       display_update(); 
       tick( &mytime );
       timeoutcount = 0;
+      *porte = ledTime;                                                //Set let value to mytime.
+      ledTime++;
     }
-  *porte = ledTime;                                                //Set let value to mytime.
-  ledTime++;
   }
   display_image(96, icon);
 
