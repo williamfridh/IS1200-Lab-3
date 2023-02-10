@@ -51,7 +51,7 @@ void labinit( void )
   TMR2 = 0;                           //Ticks to PR2
   IECSET(0) = 0x100;                  //Enable interrupts
   IPC(2) = 4;                         //Enable a interrupt priority
-  enable_interrupts();
+  enable_interrupt();
   T2CONSET = 0x8000;                  //Starting timer
 
   return;
