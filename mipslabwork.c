@@ -40,10 +40,9 @@ volatile int * porte = (volatile int *) 0xbf886110;                   // Suppose
 void labwork( void )
 {
   int btn = getbtns();
-  mytime = getbtns();
-  //if(btn & 0x8){                                                      //Check if button is pressed, if yes get switch
-  //    mytime = mytime | (getsw() << 12);                                   
-  //}
+  if(btn & 0x8){                                                      //Check if button is pressed, if yes get switch
+      mytime = mytime | (getsw() << 12);                                   
+  }
  
 
 
