@@ -4,7 +4,7 @@
 
 
 int getsw( void ){
-    return (PORTD & 0x780) >> 8;
+    return (PORTD & 0x780) >> 7;
 }
 
 int getbtns(void){
