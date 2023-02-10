@@ -19,13 +19,23 @@
 #include "mipslab.h"  /* Declatations for these labs */
 
 int mytime = 0x0000;
+int prime = 1234567;                  //Initilise global prime number
+
 
 char textstring[] = "text, more text, and even more text!";
 
 /* Interrupt Service Routine */
 void user_isr( void )
 {
-  return;
+  timeoutcount++;
+  if(timeoutcount = 10){
+    time2string(textstring, mytime);
+    display_string(3, textstring);
+    display_update();
+    tick(&mytime);
+    timeoutcount = 0;
+  }
+
 }
 
 /* Lab-specific initialization goes here */
@@ -38,9 +48,10 @@ void labinit( void )
   T2CON = 0x70;                       //Stopping timer and setting the prescaler to 1/256
   PR2 = ((80000000 / 256)/ 10);       //Setting the period for the timer
   TMR2 = 0;                           //Ticks to PR2
+  IECSET(0) = 0x100;                  //Enable interrupts
+  IPC(2) = 4;                         //Enable a interrupt priority
+  enable_interrupts();                //Calling a MIPS function 
   T2CONSET = 0x8000;                  //Starting timer
-
-
 
   return;
 }
@@ -53,38 +64,7 @@ int timeoutcount = 0;                                                 //A global
 int ledTime = 0;                                                      //Int time counter 
 void labwork( void )
 {
-  int btn = getbtns();
-  //mytime = getsw();
-
-  if(btn & 0x8){                                                      //Check if button 4 is pressed, if yes get switch
-      mytime = (mytime & 0x0fff) | (getsw() << 12);                                   
-  }
- 
- if(btn & 0x4){                                                      //Check if button 3 is pressed, if yes get switch
-      mytime = (mytime & 0xf0ff) | (getsw() << 8);                                   
-  }
-
- if(btn & 0x2){                                                      //Check if button 2 is pressed, if yes get switch
-      mytime = (mytime & 0xff0f) | (getsw() << 4);                                   
-  }
-
-
-
-  //delay( 1000 );
-
-  if(IFS(0) & 0x100){                                             //Detect and interrupt flag
-    timeoutcount++;                                               //Increment global counter 
-    IFS(0) = 0;                                                   //Clear flags
-    if(timeoutcount == 10){                                       //If there as been 10 timeout event flags then the timer value and LEDs will update
-      time2string( textstring, mytime );
-      display_string( 3, textstring );
-      display_update(); 
-      tick( &mytime );
-      timeoutcount = 0;
-      *porte = ledTime;                                           //Set let value to mytime.
-      ledTime++;
-    }
-  }
-  display_image(96, icon);
-
+    prime = nextprime(prime);
+    display_string(0, itoaconv(prime));
+    display_update;
 }
