@@ -48,12 +48,12 @@ void labwork( void )
   }*/
  
 
-  *porte = ledTime;                                                    // Set let value to mytime.
   delay( 1000 );
   time2string( textstring, mytime );
   display_string( 3, textstring );
   display_update();
   tick( &mytime );
   display_image(96, icon);
+  *porte = ledTime;                                                    // Set let value to mytime.
   ledTime++;
 }
