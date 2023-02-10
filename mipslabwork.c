@@ -30,7 +30,7 @@ void labinit( void )
   volatile int * trise = (volatile int *) 0xbf886100;                 // Defined pointer to TRISE
   *trise = *trise & 0xfffffff0;                                       // Set ports 0-7 as outputs
 
-  TRISD = TRISD & 0xfe0;
+  TRISD = 0xfe0;
 
   return;
 }
