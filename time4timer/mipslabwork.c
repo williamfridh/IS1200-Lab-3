@@ -46,6 +46,7 @@ void labinit( void )
 
 /* This function is called repetitively from the main program */
 volatile int * porte = (volatile int *) 0xbf886110;                   // Supposed to be inside labwork(), but unnecesarry
+int timeoutcount = 0;
 int ledTime = 0;
 void labwork( void )
 {
@@ -69,12 +70,16 @@ void labwork( void )
   //delay( 1000 );
 
   if(IFS(0) & 0x100){                                                //Detect and interrupt flag
-    time2string( textstring, mytime );
-    display_string( 3, textstring );
-    display_update(); 
-    tick( &mytime );
-    IFS(0) = 0;                                                    //Clear flag
-  *porte = ledTime;                                                    // Set let value to mytime.
+    timeoutcount++;
+    IFS(0) = 0;                                                   //Clear flag
+    if(timeoutcount == 10){
+      time2string( textstring, mytime );
+      display_string( 3, textstring );
+      display_update(); 
+      tick( &mytime );
+      timeoutcount = 0;
+    }
+  *porte = ledTime;                                                //Set let value to mytime.
   ledTime++;
   }
   display_image(96, icon);
