@@ -6,6 +6,10 @@
    This file should be changed by YOU! So you must
    add comment(s) here with your name(s) and date(s):
 
+   //Pontus Åhlin 
+   //William Fridh
+   //2023-02-10 
+
    This file modified 2017-04-31 by Ture Teknolog 
 
    For copyright and licensing, see file COPYING */
@@ -30,12 +34,11 @@ void labinit( void )
   volatile int * trise = (volatile int *) 0xbf886100;                 // Defined pointer to TRISE
   *trise = *trise & 0xffffff00;                                       // Set ports 0-7 as outputs
 
-  TRISDSET = 0xfe0;
-
-  T2CON = 0x70;                      //Stopping timer and setting the prescaler to 1/256
-  PR2 = ((80000000 / 256)/ 10);     //Setting the period for the timer
-  TMR2 = 0;                          //Ticks to PR2
-  T2CONSET = 0x8000;                 //Starting timer
+  TRISDSET = 0xfe0;                   //Set switches 1,2,3,4 and buttons 2,3,4 as inputs 
+  T2CON = 0x70;                       //Stopping timer and setting the prescaler to 1/256
+  PR2 = ((80000000 / 256)/ 10);       //Setting the period for the timer
+  TMR2 = 0;                           //Ticks to PR2
+  T2CONSET = 0x8000;                  //Starting timer
 
 
 
@@ -46,8 +49,8 @@ void labinit( void )
 
 /* This function is called repetitively from the main program */
 volatile int * porte = (volatile int *) 0xbf886110;                   // Supposed to be inside labwork(), but unnecesarry
-int timeoutcount = 0;
-int ledTime = 0;
+int timeoutcount = 0;                                                 //A global counter used in labwork
+int ledTime = 0;                                                      //Int time counter 
 void labwork( void )
 {
   int btn = getbtns();
@@ -69,16 +72,16 @@ void labwork( void )
 
   //delay( 1000 );
 
-  if(IFS(0) & 0x100){                                                //Detect and interrupt flag
-    timeoutcount++;
-    IFS(0) = 0;                                                   //Clear flag
-    if(timeoutcount == 10){
+  if(IFS(0) & 0x100){                                             //Detect and interrupt flag
+    timeoutcount++;                                               //Increment global counter 
+    IFS(0) = 0;                                                   //Clear flags
+    if(timeoutcount == 10){                                       //If there as been 10 timeout event flags then the timer value and LEDs will update
       time2string( textstring, mytime );
       display_string( 3, textstring );
       display_update(); 
       tick( &mytime );
       timeoutcount = 0;
-      *porte = ledTime;                                                //Set let value to mytime.
+      *porte = ledTime;                                           //Set let value to mytime.
       ledTime++;
     }
   }
