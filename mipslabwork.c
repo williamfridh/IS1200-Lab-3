@@ -28,7 +28,7 @@ void user_isr( void )
 void labinit( void )
 {
   volatile int * trise = (volatile int *) 0xbf886100;                 // Defined pointer to TRISE
-  *trise = *trise & 0xfffffff0;                                       // Set ports 0-7 as outputs
+  *trise = *trise & 0xffffff00;                                       // Set ports 0-7 as outputs
 
   TRISD = 0xfe0;
 
@@ -39,7 +39,6 @@ void labinit( void )
 volatile int * porte = (volatile int *) 0xbf886110;                   // Supposed to be inside labwork(), but unnecesarry
 void labwork( void )
 {
-  *porte = mytime;                                                    // Set let value to mytime.
   int btn = getbtns();
   if(btn & 0x8){                                                      //Check if button is pressed, if yes get switch
       mytime = mytime | (getsw() << 12);                                   
@@ -53,4 +52,6 @@ void labwork( void )
   display_update();
   tick( &mytime );
   display_image(96, icon);
+  *porte = mytime;                                                    // Set let value to mytime.
+
 }
