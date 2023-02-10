@@ -33,12 +33,12 @@ void labinit( void )
   TRISDSET = 0xfe0;
 
   
-  PR2 = 10;                         //Setting the period for the timer
+  PR2 = 31500;                         //Setting the period for the timer
   T2CON = 0x0;                      //Stopping timer
   TMR2 = 0;                         //Ticks to PR2
   T2CONSET = 0x70;                  //Setting prescaler to 1/256
   IECSET2 = 0x100;                  //Enable interrupts
-  T2CONSET = 0x8000;                //Starting timer
+  //T2CONSET = 0x8000;                //Starting timer
 
 
 
