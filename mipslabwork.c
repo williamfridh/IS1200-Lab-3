@@ -43,15 +43,15 @@ void labwork( void )
   int btn = getbtns();
   //mytime = getsw();
 
-  if(btn & 0x8){                                                      //Check if button is pressed, if yes get switch
+  if(btn & 0x8){                                                      //Check if button 4 is pressed, if yes get switch
       mytime = (mytime & 0x0fff) | (getsw() << 12);                                   
   }
  
- if(btn & 0x4){                                                      //Check if button is pressed, if yes get switch
+ if(btn & 0x4){                                                      //Check if button 3 is pressed, if yes get switch
       mytime = (mytime & 0xf0ff) | (getsw() << 8);                                   
   }
 
- if(btn & 0x2){                                                      //Check if button is pressed, if yes get switch
+ if(btn & 0x2){                                                      //Check if button 2 is pressed, if yes get switch
       mytime = (mytime & 0xff0f) | (getsw() << 4);                                   
   }
 
