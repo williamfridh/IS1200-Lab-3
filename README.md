@@ -1,41 +1,51 @@
 # S1200-Lab-3
 
-#Questions for Assignment 1
+# Questions for Assignment 1
 
-##Test pressing BTN3 and BTN2 at the same time. What happens? Why?
+## Test pressing BTN3 and BTN2 at the same time. What happens? Why?
 
-##Three device-registers for input/output control are TRISE, TRISESET, and TRISECLR.
-Their functions are related. How? What are the differences?
+### Answer:
+ 
 
-##In the generated assembly code, in which MIPS register will the return values from
-functions getbtns and getsw be placed in. You should be able to answer this question
-without debugging the generated assembly code.
+## Three device-registers for input/output control are TRISE, TRISESET, and TRISECLR.
+## Their functions are related. How? What are the differences?
 
-##In this exercise, we explained which bits that should be used in Port D and Port E. How can
-you find this information in the PIC32 and ChipKIT manuals? Be prepared to demonstrate
-how to find this information in the manuals. 
+### Answer: 
 
-#Questions for Assignment 2
+Their function is to set what is to be an input/output. Using TRISE you set the value of a specific bit to either 1 or 0. 
+And with TRISESET you set the bit to be only one, and TRISECLR you set a bit to 0.  
 
-##When the time-out event-flag is a "1", how does your code reset it to "0"?
+## In the generated assembly code, in which MIPS register will the return values from
+## functions getbtns and getsw be placed in. You should be able to answer this question
+## without debugging the generated assembly code.
 
-##What would happen if the time-out event-flag was not reset to "0" by your code? Why?
+## In this exercise, we explained which bits that should be used in Port D and Port E. How can
+## you find this information in the PIC32 and ChipKIT manuals? Be prepared to demonstrate
+## how to find this information in the manuals. 
 
-##Which device-register (or registers) must be written to define the time between time-out
-events? Describe the function of that register (or of those registers).
+# Questions for Assignment 2
 
-##If you press BTN3 quickly, does the time update reliably? Why, or why not? If not, would
-that be easy to change? If so, how?
+## When the time-out event-flag is a "1", how does your code reset it to "0"?
 
-Questions for Assignment 3
+## What would happen if the time-out event-flag was not reset to "0" by your code? Why?
 
-When the time-out event-flag is a "1", how does your code reset it to "0"?
+## Which device-register (or registers) must be written to define the time between time-out
+## events? Describe the function of that register (or of those registers).
 
-What would happen if the time-out event-flag was not reset to "0" by your code? Why?
+## If you press BTN3 quickly, does the time update reliably? Why, or why not? If not, would
+## that be easy to change? If so, how?
 
-From which part of the code is the function user_isr called? Why is it called from there?
+# Questions for Assignment 3
 
-Why are registers saved before the call to user_isr? Why are only some registers saved?
+## When the time-out event-flag is a "1", how does your code reset it to "0"?
 
-Which device-register (or registers), and which processor-register (or registers) must be
-written to enable interrupts from the timer? Describe the functions of the relevant registers.
+Answer: 
+
+## What would happen if the time-out event-flag was not reset to "0" by your code? Why?
+
+## From which part of the code is the function user_isr called? Why is it called from there?
+
+## Why are registers saved before the call to user_isr? Why are only some registers saved?
+
+## Which device-register (or registers), and which processor-register (or registers) must be
+## written to enable interrupts from the timer? Describe the functions of the relevant registers.
