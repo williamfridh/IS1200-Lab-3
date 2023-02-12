@@ -66,5 +66,5 @@ void labwork( void )
 {
     prime = nextprime(prime);
     display_string(0, itoaconv(prime));
-    display_update;
+    display_update();
 }
