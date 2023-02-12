@@ -28,7 +28,7 @@ char textstring[] = "text, more text, and even more text!";
 /* Interrupt Service Routine */
 void user_isr( void )
 {
-  timeoutcount++;
+  //timeoutcount++;
   if(timeoutcount == 10){
     time2string(textstring, mytime);
     display_string(3, textstring);
@@ -50,7 +50,7 @@ void labinit( void )
   PR2 = ((80000000 / 256)/ 10);       //Setting the period for the timer
   TMR2 = 0;                           //Ticks to PR2
   IECSET(0) = 0x100;                  //Enable interrupts
-  IPC(2) = 4;                         //Enable a interrupt priority
+ // IPC(2) = 4;                         //Enable a interrupt priority
   enable_interrupt();
   T2CONSET = 0x8000;                  //Starting timer
 
