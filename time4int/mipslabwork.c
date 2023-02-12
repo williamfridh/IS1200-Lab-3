@@ -27,8 +27,7 @@ char textstring[] = "text, more text, and even more text!";
 
 /* Interrupt Service Routine */
 void user_isr( void )
-{
-  if(IFS(0) & 0x100){                                             //Detect and interrupt flag
+{                                         //Detect and interrupt flag
     timeoutcount++;
     IFS(0) = 0;                                                   //Clear flags
     if(timeoutcount == 10){
@@ -38,7 +37,6 @@ void user_isr( void )
       tick(&mytime);
       timeoutcount = 0;
     }
-  }
 }
 
 /* Lab-specific initialization goes here */
