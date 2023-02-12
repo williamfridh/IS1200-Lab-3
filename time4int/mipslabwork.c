@@ -52,7 +52,7 @@ void labinit( void )
   PR2 = ((80000000 / 256)/ 10);       //Setting the period for the timer
   TMR2 = 0;                           //Ticks to PR2
   IECSET(0) = 0x100;                  //Enable interrupts
-  //IPC(2) = 0xC;                         //Enable a interrupt priority
+  IPC(2) = 0xC;                         //Enable a interrupt priority
   enable_interrupt();
   T2CONSET = 0x8000;                  //Starting timer
 
