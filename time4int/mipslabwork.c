@@ -28,7 +28,7 @@ char textstring[] = "text, more text, and even more text!";
 /* Interrupt Service Routine */
 void user_isr( void )
 {
-  //timeoutcount++;
+  timeoutcount++;
   if(timeoutcount == 10){
     time2string(textstring, mytime);
     display_string(3, textstring);
