@@ -29,7 +29,7 @@ char textstring[] = "text, more text, and even more text!";
 void user_isr( void )
 {
   timeoutcount++;
-  if(timeoutcount = 10){
+  if(timeoutcount == 10){
     time2string(textstring, mytime);
     display_string(3, textstring);
     display_update();
