@@ -18,7 +18,7 @@
 
 enable_interrupt:
 	ei
-	jr $ra
+	jr 	$ra
 	nop
 
 	
