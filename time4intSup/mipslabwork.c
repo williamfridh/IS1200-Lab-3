@@ -34,13 +34,14 @@ void user_isr( void )
   if(IFS(0) & 0x80){
     ledTime++;
     *porte = ledTime;
+    IFS(0) = IFS(0) & 0xffffff7f;         //reset specific flag 
   }
 
 
 
   if(IFS(0) & 0x100){
     timeoutcount++;
-    IFS(0) = 0;                                                   //Clear flags
+    IFS(0) = IFS(0) & 0xfffffeff;                                                   //Clear flags
     if(timeoutcount == 10){
       time2string(textstring, mytime);
       display_string(3, textstring);
@@ -69,6 +70,7 @@ void labinit( void )
 
 
   IECSET(0) = 0x80;                   //Enable interrupts for External interrupt 1
+  IPC(1) = 0xC;                       //Set priority for timer 1 
 
 
 
