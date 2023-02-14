@@ -56,17 +56,19 @@ void labinit( void )
 {
   volatile int * trise = (volatile int *) 0xbf886100;                 // Defined pointer to TRISE
   *trise = *trise & 0xffffff00;                                       // Set ports 0-7 as outputs
+  *porte = 0;
 
   TRISDSET = 0xfe0;                   //Set switches 1,2,3,4 and buttons 2,3,4 as inputs 
   T2CON = 0x70;                       //Stopping timer and setting the prescaler to 1/256
   PR2 = ((80000000 / 256)/ 10);       //Setting the period for the timer
   TMR2 = 0;                           //Ticks to PR2
   IECSET(0) = 0x100;                  //Enable interrupts
-  //IPC(2) = 0xC;                       //Enable a interrupt priority
+  IPC(2) = 0xC;                       //Enable a interrupt priority
   enable_interrupt();
   T2CONSET = 0x8000;                  //Starting timer
 
-  IECSET(0) = 0x80;                   //Enable timer for 
+
+  IECSET(0) = 0x80;                   //Enable interrupts for External interrupt 1
 
 
 
